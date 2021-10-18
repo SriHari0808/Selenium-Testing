@@ -61,10 +61,10 @@ namespace SQ_ASSIGN_02
             // Test fails
 
             driver.Navigate().GoToUrl("file:///C:/Users/Sri%20Hari/OneDrive/Documents/SEM-3/Software%20Quality%20-%20ALLISON/VehicleStore/login.html");
-            IWebElement username = driver.FindElement(By.Id("username"));
+            IWebElement username = driver.FindElement(By.Name("username"));
             username.SendKeys("sri");
             
-            IWebElement login = driver.FindElement(By.Id("formSubmit"));
+            IWebElement login = driver.FindElement(By.Name("formSubmit"));
             login.Click();
            
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -157,6 +157,22 @@ namespace SQ_ASSIGN_02
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(By.XPath("/html/body/div/div/section[1]")));
+        }
+       
+        [TestMethod]
+        public void T8_VehicleSalePage_ClickOn_PostNewVehicle()
+        {
+            //Bug! cannot move to post new vehicle page while in vehicle sale page
+            //expected result = moved to post new vehicle page
+            //actual result = stayed in vehicle sale page
+            // Test fails
+            driver.Navigate().GoToUrl("file:///C:/Users/Sri%20Hari/OneDrive/Documents/SEM-3/Software%20Quality%20-%20ALLISON/VehicleStore/sale.html");
+            IWebElement PostNewVehicle = driver.FindElement(By.Id("goSale"));
+            PostNewVehicle.Click();
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.Navigate().Equals("file:///C:/Users/Sri%20Hari/OneDrive/Documents/SEM-3/Software%20Quality%20-%20ALLISON/VehicleStore/new.html"));
+
         }
     }
 }
